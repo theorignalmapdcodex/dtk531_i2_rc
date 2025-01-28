@@ -6,7 +6,7 @@ def on_connect(client, userdata, flags, rc):
     if rc == 0:
         print("Successfully connected to broker")
         # Subscribe to topic
-        client.subscribe("pythontest/sensors/mydata") #mysensor
+        client.subscribe("pythontest/sensors/mysensor")
     else:
         print(f"Connection failed with code {rc}")
 
