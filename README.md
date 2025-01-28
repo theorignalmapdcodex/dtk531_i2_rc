@@ -1,6 +1,4 @@
-Here's an updated version of the README.md that incorporates the requested changes:
-
-# MQTT-LLM College Data Integration
+# **MQTT-LLM College Data Integration**
 
 An intelligent system that integrates MQTT messaging with Google's Gemini LLM to provide real-time analysis of U.S. college data. This system enables personalized insights for college-bound students by processing and analyzing college information in real-time.
 
