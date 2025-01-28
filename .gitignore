@@ -1,3 +1,2 @@
 # Environments
-# .env - Same as below
-gemini_api_llm/.env
+.env

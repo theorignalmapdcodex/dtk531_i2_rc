@@ -23,28 +23,35 @@ publisher.connect("test.mosquitto.org", 1883, 60)
 publisher.loop_start()
 
 try:
+    with open('../datasets/schoolsdata.json', 'r') as f:
+        schools = json.load(f)
+
     while True:
-        # Generate random temperature between 20°C and 25°C
-        temperature = round(random.uniform(20.0, 25.0), 1)
         
-        humidity = round(random.uniform(40.0, 60.0), 1)
+        # Randomly select a school from the list
+        school = random.choice(schools)
         
-        # Create sample sensor data
-        sensor_data = {
-            "temperature": temperature,
-            "humidity": humidity,
+        school_data = {
+            "Unit_ID": school["Unit ID"],
+            "Institution_Name": school["Institution Name"],
+            "Avg_Net_Price": school["Avg Net Price"],
+            "City": school["City"],
+            "State": school["State"],
+            "Zip_Code": school["Zip Code"],
+            "Category": school["Category"],
+            "SAT_Reading_75th": school["SAT Reading 75th"],
+            "SAT_Math_75th": school["SAT Math 75th"],
             "timestamp": datetime.now().isoformat()
         }
-        
-        # Publish to topic - using a unique topic to avoid conflicts with other users
-        topic = "pythontest/sensors/mysensor"
+
+        topic = "gemini_llm_test/uscolleges/schdetails"
         publisher.publish(
             topic,
-            json.dumps(sensor_data),
+            json.dumps(school_data),
             qos=1
         )
-        print(f"Published to {topic}: {sensor_data}")
-        time.sleep(1)
+        print(f"Published to {topic}: {school_data}")
+        time.sleep(1)  # Adjust sleep time as needed
         
 except KeyboardInterrupt:
     print("Stopping publisher...")
