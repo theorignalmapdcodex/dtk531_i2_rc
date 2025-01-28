@@ -22,8 +22,8 @@ This project consists of the following components:
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
-cd [repository-name]
+git clone [[your-repository-url](https://github.com/theorignalmapdcodex/dtk531_i2_rc)]
+cd [dtk531_i2_rc]
 ```
 
 2. Create and activate a virtual environment:
