@@ -29,7 +29,7 @@ def on_message(client, userdata, msg):
     print("\nA. Message Payload From Developed JSON file via a subscription topic:\n", received_message, "\n")
 
     # 2. Create a prompt for the Gemini API
-    prompt = f"Generate a summary analysis of this school and its corresponding data for a student willing to go to college in the US. Here is the information: {received_message}"
+    prompt = f"Generate a summary analysis of this school and its corresponding data for a student willing to go to college in the US and [[one historic event that stands out for this college. While providing the university's logo image]] Here is the information: {received_message}"
 
     # 3. Call the Gemini API
     try:
