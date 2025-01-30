@@ -1,6 +1,6 @@
 # **MQTT-LLM College Data Integration**
 
-An intelligent system that integrates MQTT messaging with Google's Gemini LLM to provide real-time analysis of U.S. college data. This system enables personalized insights for college-bound students by processing and analyzing college information in real-time.
+An intelligent system that integrates MQTT messaging with Google's Gemini LLM to provide real-time analysis of U.S. college data. This system enables personalized insights, historic and notable information for college-bound students by processing and analyzing college information in real-time.
 
 ## Project Overview
 
@@ -26,27 +26,35 @@ cd [dtk531_i2_rc]
 
 2. Create and activate a virtual environment:
 ```bash
-python3 -m venv college_data_env
-source college_data_env/bin/activate  # On Windows, use `college_data_env\Scripts\activate`
+python3 -m venv college_task_env
+source college_task_env/bin/activate  # On Windows, use `college_task_env\Scripts\activate`
 ```
 
 3. Install required packages:
 ```bash
-pip install paho-mqtt google-generativeai python-dotenv
+pip install paho-mqtt google-generativeai
 ```
 
 4. Set up your Gemini API credentials:
-   - Create a file named `gemini_myapi.py`
-   - Add your API key:
+- Create a `.env` file to store your actual Gemini key for it to be accessible globally
    ```python
-   the_api_key = "your-gemini-api-key"
+   YOUR_API_KEY = 'ActualAPIkeyValue'
+   ```
+   - Next, create a file named `gemini_myapi.py`
+   - Load environment variables (in this case your api key) from the .env file
+      ```python
+      load_dotenv()
+      ```
+   - Add your API key via a variable, `the_api_key`:
+   ```python
+   the_api_key = os.getenv("YOUR_API_KEY")
    ```
 
 ## Pre-tasks
 
 1. Prepare the college data:
-   - Download the latest college data from [NCES IPEDS](https://nces.ed.gov/ipeds/use-the-data)[7].
-   - Convert the data to JSON format using a tool like [Mockaroo](https://www.sitepoint.com/test-data-json-example/)[5] or by writing a custom script.
+   - Download the college data from [NCES IPEDS](https://nces.ed.gov/ipeds/datacenter/InstitutionList.aspx?goToReportId=1&sid=ed8899d5-439d-45d0-8201-036ffada722b&rtid=1). NB: You would have to select your own variables to create your dataset.
+   - Convert the data (usually in csv format) to JSON format using a tool or template like [Mockaroo](https://nces.ed.gov/ipeds/datacenter/InstitutionList.aspx?goToReportId=1&sid=ed8899d5-439d-45d0-8201-036ffada722b&rtid=1) or by editing a custom script from [Google Colab]() for example.
    - Save the JSON file as `schoolsdata.json` in the project directory.
 
 2. Configure MQTT settings:
@@ -125,7 +133,7 @@ The system includes error handling for:
 - Expand college data analysis capabilities
 - Implement multi-topic support for different types of college data
 
-## Resources
+## Resources/References
 
 - [NCES IPEDS Data](https://nces.ed.gov/ipeds/use-the-data)
 - [Python Virtual Environments Guide](https://www.dataquest.io/blog/a-complete-guide-to-python-virtual-environments/)
@@ -134,30 +142,7 @@ The system includes error handling for:
 
 For more information on IPEDS data and its usage, visit the [NCES IPEDS website](https://nces.ed.gov/ipeds/use-the-data/new-to-ipeds)[7].
 
-[1][2][3][4][5][6][7][8]
+---
+This project provides an **efficient** way to integrate **[MQTT (Message Queuing Telemetry Transport)](https://mqtt.org/)** with **[Gemini API (Gemini Application Programming Interface)](https://aistudio.google.com/prompts/new_chat?gad_source=1&gclid=Cj0KCQiAwOe8BhCCARIsAGKeD54ZYrTJ_uA03Eo9DlKsfjx4kv_Bvys7A0RxPujgVbyBFwLU6dsP8X0aArU-EALw_wcB) to enhance Human-LLM interactions**. 🚀
 
-Citations:
-[1] https://nces.ed.gov
-[2] https://www.dataquest.io/blog/a-complete-guide-to-python-virtual-environments/
-[3] https://dev.to/ndutared/understanding-mqtt-with-eclipse-paho-python-664
-[4] https://priyanshu.com.np/genai/
-[5] https://www.sitepoint.com/test-data-json-example/
-[6] https://docs.datacommons.org/custom_dc/custom_data.html
-[7] https://nces.ed.gov/ipeds/use-the-data/new-to-ipeds
-[8] https://developer.vonage.com/en/blog/a-comprehensive-guide-on-working-with-python-virtual-environments
-[9] http://www.steves-internet-guide.com/into-mqtt-python-client/
-[10] https://www.goldyarora.com/blog/python-virtual-environments
-[11] https://docs.python.org/ko/3.6/library/venv.html
-[12] https://pypi.org/project/paho-mqtt/
-[13] https://stackoverflow.com/questions/77868611/modulenotfounderror-no-module-named-google-generative
-[14] https://blog.inedo.com/python/python-environment-management-best-practices/
-[15] https://cedalo.com/blog/configuring-paho-mqtt-python-client-with-examples/
-[16] https://www.youtube.com/watch?v=xBRzb5LqXTY
-[17] https://realpython.com/python-virtual-environments-a-primer/
-[18] https://communities.sas.com/t5/SAS-Communities-Library/How-to-read-JSON-data-in-SAS/ta-p/849000
-[19] https://stackoverflow.com/questions/60473360/how-to-implement-test-data-in-json-file-in-data-driven-unit-test-in-net-using-c
-[20] https://donnees-data.tpsgc-pwgsc.gc.ca/dd/json_df-eng.html
-[21] https://webservices.it.ufl.edu/t4/uf-2015-template/content-types/build-json-file/
-[22] https://worldbank.github.io/connectivity_mapping/facebook_nbs/creating_a_json_for_collection.html
-[23] https://nces.ed.gov/ipeds/use-the-data/new-to-ipeds
-[24] https://www.youtube.com/watch?v=XM6kh_jnUSY
+📚 **Author:** Michael Dankwah Agyeman-Prempeh [MEng. DTI '25]
