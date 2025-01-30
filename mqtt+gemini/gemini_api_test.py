@@ -48,7 +48,6 @@ The guide should include:
 avoiding a negative impression.  Include advice on admitting lack of knowledge and pivoting to showcase relevant skills. 
 """
 
-
 # Generating the Response
 try:
     response = gemini_model.generate_content(test_prompt).text
